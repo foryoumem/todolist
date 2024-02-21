@@ -1,0 +1,26 @@
+.todolist {
+    width: 500px;
+    margin: auto;
+}
+
+
+.todolist > h1 {
+    text-align: center;
+}
+
+.metadata {
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.write {
+    width: 80%;
+}
+
+.add {
+    width: 10%;
+}
+
+.delete {
+    margin-left: 10px;
+}
