@@ -6,5 +6,6 @@ run()
 
 function run()
 {
-    body.appendChild(generateTodolist("todolist"))
+    body.appendChild(generateTodolist("Todolist"))
+    body.appendChild(generateTodolist("Todolist 2"))
 }
