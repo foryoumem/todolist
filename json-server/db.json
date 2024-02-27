@@ -36,30 +36,9 @@
       "is_complete": true
     },
     {
-      "id": "9321",
-      "value": "dsfdsfdfsf",
-      "creation_time": "04:38:14",
-      "complete_time": "04:38:35",
-      "is_complete": true
-    },
-    {
       "id": "858e",
       "value": "dsfdsfsdfd",
       "creation_time": "04:38:16",
-      "complete_time": "",
-      "is_complete": false
-    },
-    {
-      "id": "5370",
-      "value": "dsfsfsfff",
-      "creation_time": "04:38:28",
-      "complete_time": "",
-      "is_complete": false
-    },
-    {
-      "id": "bd71",
-      "value": "dfgfdg",
-      "creation_time": "04:47:12",
       "complete_time": "",
       "is_complete": false
     },
@@ -74,6 +53,13 @@
       "id": "d825",
       "value": "ㅇㅇㅇㅇㅇㅇ",
       "creation_time": "05:02:36",
+      "complete_time": "",
+      "is_complete": false
+    },
+    {
+      "id": "6ebf",
+      "value": "sdfsdf",
+      "creation_time": "07:30:00",
       "complete_time": "",
       "is_complete": false
     }
