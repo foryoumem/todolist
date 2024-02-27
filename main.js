@@ -8,4 +8,7 @@ function run()
 {
     body.appendChild(generateTodolist("Todolist"))
     body.appendChild(generateTodolist("Todolist 2"))
+    body.appendChild(generateTodolist("Todolist 3"))
+    body.appendChild(generateTodolist("Todolist 4"))
+    body.appendChild(generateTodolist("Todolist 5"))
 }
