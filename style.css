@@ -1,5 +1,5 @@
 .route {
-    width: 300px;
+    width: 400px;
 }
 
 .header {
@@ -70,6 +70,15 @@
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word;
+}
+
+.todo-item {
+    border: 1px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.todo-item:hover {
+    border-color: royalblue;
 }
 
 .write-time {

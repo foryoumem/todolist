@@ -52,14 +52,11 @@ export function layoutTodolist(options)
     route.appendChild(writeArea)
     route.appendChild(listArea)
 
-
-
     // 글쓰기, 게시 버튼을 작성 영역에 추가
     const writer = createTodoWriter()
     const addButton = createTodoAddButton(options.createTodoAddButton)
     writeArea.appendChild(writer)
     writeArea.appendChild(addButton)
-
 
     // todolist와 completelist를 목록 영역에 추가
     // todolist에는 작성 영역에서 게시한 아이템이 나열되는 곳

@@ -3,28 +3,22 @@ import {layoutTodoItem} from "./layout.js"
 
 const host = "http://localhost:3000"
 
-// const data = {
-//     "id": "",
-//     "value": "",
-//     "creation_time": "",
-//     "complete_time": "",
-//     "is_complete": true
-// }
-
 export function postData(data)
 {
     fetch(host + "/todo", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)})
         .then(response => response.json())
         .then(data => console.log(data))
-        .catch(error => console.error('error:', error))
+        .catch(error => console.error(error))
 }
+
 export function deleteData(data)
 {
     fetch(host + `/todo/${data.id}`, {method: 'DELETE'})
         .then(response => response.json())
-        .then(data => console.log('delete: ', data))
+        .then(data => console.log(data))
         .catch(error => console.error(error))
 }
+
 export function patchData(data)
 {
     const update = {
@@ -37,15 +31,6 @@ export function patchData(data)
         .catch(error => console.error(error))
 }
 
-export function getData()
-{
-    fetch(host + "/todo")
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error))
-}
-
-
 export function refreshData(route)
 {
     fetch(host + "/todo")
@@ -57,7 +42,7 @@ export function refreshData(route)
             todoList.replaceChildren()
             compList.replaceChildren()
 
-            data.forEach((iter, index) =>
+            data.forEach(iter =>
             {
                 const options = new itemOptions()
                 options.id = iter.id
