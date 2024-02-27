@@ -1,5 +1,6 @@
 import {layoutTodolist} from "./layout.js"
-import {addTodoItem} from "./event.js"
+import {addTodoItem, moveTodoItem, deleteItem, itemOptions} from "./event.js"
+import {refreshData} from "./server.js"
 
 export function generateTodolist(text)
 {
@@ -7,5 +8,9 @@ export function generateTodolist(text)
         "createHeader": text,
         "createTodoAddButton": addTodoItem(),
     }
-    return layoutTodolist(options)
+
+    const todolist = layoutTodolist(options)
+    refreshData(todolist)
+
+    return todolist
 }
