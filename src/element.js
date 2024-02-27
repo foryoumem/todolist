@@ -84,10 +84,11 @@ export function createTodoText(text)
     return span
 }
 
-export function createTodoCheckbox(event)
+export function createTodoCheckbox(event, isChecked = false)
 {
     const input = document.createElement("input")
     input.type = "checkbox"
+    input.checked = isChecked
     input.className = "todo-check"
     input.addEventListener("click", event)
 

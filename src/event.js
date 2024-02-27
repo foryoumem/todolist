@@ -1,7 +1,32 @@
 import {getCurrentTime, } from "./time.js"
 import {layoutTodoItem, } from "./layout.js"
+import {postData, deleteData, patchData} from "./server.js"
 
-export function addTodoItem(text)
+export class itemOptions
+{
+    constructor(id = 0)
+    {
+        this.id = 0
+        this.createTodoText = ""
+        this.createTodoCheckbox = {event: moveTodoItem(), isChecked: false}
+        this.createTodoDeleteButton = deleteItem()
+        this.createWriteTime = "작성: " + getCurrentTime()
+        this.createCompleteTime = ""
+    }
+}
+
+export class dataOptions
+{
+    constructor()
+    {
+        this.value = ""
+        this.creation_time = ""
+        this.complete_time = ""
+        this.is_complete = true
+    }
+}
+
+export function addTodoItem()
 {
     return (event) =>
     {
@@ -9,14 +34,17 @@ export function addTodoItem(text)
         const writer = writeArea.getElementsByClassName("write")[0]
         if (writer.value == "") return
 
-        const options = {
-            "createTodoText": writer.value,
-            "createTodoCheckbox": moveTodoItem(),
-            "createTodoDeleteButton": deleteItem(),
-            "createWriteTime": "작성: " + getCurrentTime(),
-            "createCompleteTime": "",
-        }
+        const options = new itemOptions()
+        options.createTodoText = writer.value
+
         const item = layoutTodoItem(options)
+
+        const data = new dataOptions()
+        data.value = writer.value
+        data.creation_time = getCurrentTime()
+        data.complete_time = ""
+        data.is_complete = false
+        postData(data)
 
         const list = writeArea.parentNode.getElementsByClassName("todo-list")[0]
         list.appendChild(item)
@@ -41,7 +69,13 @@ export function moveTodoItem()
         // 체크 해제이면 todoList로 이동하고 작성시간만 보여줌
         if (checkbox.checked)
         {            
-            completeTime.innerText = "완료: " + getCurrentTime()
+            const data = new dataOptions()
+            data.id = item.value
+            data.complete_time = getCurrentTime()
+            data.is_complete = true
+            patchData(data)
+
+            completeTime.innerText = "완료: " + data.complete_time
             completeTime.style.display = "block"
             writeTime.style.display = "none"
 
@@ -50,6 +84,12 @@ export function moveTodoItem()
         }
         else
         {
+            const data = new dataOptions()
+            data.id = item.value
+            data.complete_time = ""
+            data.is_complete = false
+            patchData(data)
+
             completeTime.style.display = "none"
             writeTime.style.display = "block"          
             
@@ -65,7 +105,11 @@ export function deleteItem()
     {
         const item = event.target.parentNode
         const writeArea = item.parentNode.parentNode
-        const todoList = writeArea.getElementsByClassName("todo-list")[0]     
+        const todoList = writeArea.getElementsByClassName("todo-list")[0]
+        
+        const data = new dataOptions()
+        data.id = item.value
+        deleteData(data)
         
         if (item.parentNode == todoList)
         {

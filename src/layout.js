@@ -1,17 +1,32 @@
 import {createTodoList, createCompleteList, createTodoItem, createTodoCheckbox, createTodoText, createTodoDeleteButton, createWriteTime, createCompleteTime, createTodolistRoute, createWriteArea, createListArea, createHeader, createTodoWriter, createTodoAddButton, } from "./element.js"
 
+
 // options key
 // 파라미터가 필요할 경우 함수명을 키값으로 사용
 export function layoutTodoItem(options)
 {
     const item = createTodoItem()
+    item.value = options.id
 
-    const checkbox = createTodoCheckbox(options.createTodoCheckbox)
+    const checkbox = createTodoCheckbox(options.createTodoCheckbox.event, options.createTodoCheckbox.isChecked)
     const todoText = createTodoText(options.createTodoText)
     const deleteButton = createTodoDeleteButton(options.createTodoDeleteButton)
     const writeTime = createWriteTime(options.createWriteTime)
     const completeTime = createCompleteTime(options.createCompleteTime)
     
+    // 체크박스 상태에 따른 작성, 완료 시간 표시
+    if (options.createTodoCheckbox.isChecked)
+    {
+        completeTime.innerText = options.createCompleteTime
+        completeTime.style.display = "block"
+        writeTime.style.display = "none"
+    }
+    else
+    {
+        completeTime.style.display = "none"
+        writeTime.style.display = "block"   
+    }
+
     item.appendChild(checkbox)
     item.appendChild(todoText)
     item.appendChild(deleteButton)
